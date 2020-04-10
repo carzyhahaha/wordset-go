@@ -4,33 +4,18 @@ const SUCCESS = 0
 const FAIL = -1
 
 type ApiCode struct {
-
 }
 
 type ApiResponse struct {
-	Code int
-	Msg string
-	Data interface{}
+	Code int         `json:"name"`
+	Msg  string      `json:"msg"`
+	Data interface{} `json:"data"`
 }
 
-func (d *ApiResponse) Success(data interface{}) ApiResponse{
+func NewApiResponse(code int, msg string, data interface{}) ApiResponse {
 	return ApiResponse{
-		Code: SUCCESS,
-		Msg:  "success",
+		Code: code,
+		Msg:  msg,
 		Data: data,
 	}
 }
-
-func (d *ApiResponse) fail(msg string) ApiResponse {
-	return ApiResponse{
-		Code: FAIL,
-		Msg:  msg,
-		Data: nil,
-	}
-}
-
-
-
-
-
-
