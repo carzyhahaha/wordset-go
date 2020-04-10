@@ -1,0 +1,7 @@
+/*
+!/common
+!/util
+!/views
+!.gitignore
+!Application.go
+!go.*
