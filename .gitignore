@@ -5,3 +5,4 @@
 !.gitignore
 !Application.go
 !go.*
+!/entity
