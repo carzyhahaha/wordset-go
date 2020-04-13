@@ -1,11 +1,11 @@
 package main
 
 import (
-	"encoding/json"
 	"github.com/kataras/iris/v12"
 	"log"
 	"strconv"
 	"wordset/common"
+	"wordset/router"
 )
 
 func main() {
@@ -20,9 +20,8 @@ func main() {
 	app.Get("/user/{id:uint64}", func(ctx iris.Context) {
 		response := common.NewApiResponse(0, "1", nil)
 
-		rs, _ := json.Marshal(response)
-		ctx.Write(rs)
 		ctx.Next()
+		ctx.JSON(response)
 	})
 
 	app.Post("/testpost", func(ctx iris.Context) {
@@ -45,6 +44,8 @@ func main() {
 		v, _ := ctx.Params().GetInt("v")
 		ctx.Writef("get v: %d", v)
 	})
+
+	router.SetWordSetRouter(app)
 
 	app.Listen(":9900")
 
